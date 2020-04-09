@@ -3,6 +3,7 @@
 use App\Admin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminsTableSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class AdminsTableSeeder extends Seeder
                 'type' => 'admin',
                 'mobile' => '03316668834',
                 'email' => 'admin@mail.com',
-                'password' => '$2y$10$5KWBQVO9FFN1FJLLhV.2weOLdxcC87WRaDGHhP0xvYVozQgB/6ryO',
+                'password' => Hash::make("mudasser@123"),
                 'image' =>  '',
                 'status' => 1
             ],
@@ -31,7 +32,7 @@ class AdminsTableSeeder extends Seeder
                 'type' => 'subadmin',
                 'mobile' => '03316668834',
                 'email' => 'john@mail.com',
-                'password' => '$2y$10$5KWBQVO9FFN1FJLLhV.2weOLdxcC87WRaDGHhP0xvYVozQgB/6ryO',
+                'password' => Hash::make("mudasser@123"),
                 'image' =>  '',
                 'status' => 1
             ],[
@@ -49,7 +50,7 @@ class AdminsTableSeeder extends Seeder
                 'type' => 'admin',
                 'mobile' => '03316668834',
                 'email' => 'mudasser@mail.com',
-                'password' => '$2y$10$5KWBQVO9FFN1FJLLhV.2weOLdxcC87WRaDGHhP0xvYVozQgB/6ryO',
+                'password' => Hash::make("mudasser@123"),
                 'image' =>  '',
                 'status' => 1
             ],
