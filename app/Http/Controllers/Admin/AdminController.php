@@ -77,9 +77,40 @@ class AdminController extends Controller
                     $request->session()->flash("error_message", "New password and confirm password mismatch.");
                 }
             }else{
-                Session::flash("error_message", "Your current password is incorrect");
+                $request->session()->flash("error_message", "Your current password is incorrect");
             }
             return redirect()->back();
         }
+    }
+
+    public function updateAdminDetails(Request $request)
+    {
+        if ($request->isMethod('post')){
+            $data = $request->all();
+
+            // Validation logic
+            $rules = [
+                'admin_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'admin_mobile' => 'required|numeric',
+            ];
+
+            $customMessage = [
+                'admin_name.required' => 'Name is required',
+                'admin_name.alpha' => 'Valid name is required.',
+                'admin_mobile.required' => 'Mobile number is required.',
+                'admin_mobile.numeric' => 'Please enter the valid mobile number.',
+            ];
+            $this->validate($request, $rules, $customMessage);
+
+            // update the admin details
+            Admin::where('email', Auth::guard('admin')->user()->email)
+                ->update([
+                    'name' => $data['admin_name'],
+                    'mobile' => $data['admin_mobile'],
+                ]);
+            $request->session()->flash("success_message", "Admin Details updated successfully.");
+            return redirect()->back();
+        }
+        return view('admin.update_admin_details');
     }
 }
