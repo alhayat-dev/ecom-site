@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use MongoDB\Driver\Session;
 
 class AdminController extends Controller
@@ -87,26 +88,46 @@ class AdminController extends Controller
     {
         if ($request->isMethod('post')){
             $data = $request->all();
+//            dd($data);
 
             // Validation logic
             $rules = [
                 'admin_name' => 'required|regex:/^[\pL\s\-]+$/u',
                 'admin_mobile' => 'required|numeric',
+                'admin_image' => 'image'
             ];
 
             $customMessage = [
                 'admin_name.required' => 'Name is required',
-                'admin_name.alpha' => 'Valid name is required.',
                 'admin_mobile.required' => 'Mobile number is required.',
                 'admin_mobile.numeric' => 'Please enter the valid mobile number.',
+                'admin_image.image' => 'Please upload the valid image file',
             ];
             $this->validate($request, $rules, $customMessage);
 
+            // image validation
+
+            if ($request->hasFile('admin_image')){
+                $image_tmp = $request->file('admin_image');
+                if ($image_tmp->isValid()){
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    //Generate the new image
+                    $imageName = rand(111,99999).'.'.$extension;
+                    $imagePath = 'images/admin_images/admin_photos/'. $imageName;
+                    // upload the image
+                    Image::make($image_tmp)->save($imagePath);
+                }elseif (!empty($data['current_admin_image'])){
+                    $imageName = $data['current_admin_image'];
+                }else{
+                    $imageName = '';
+                }
+            }
             // update the admin details
             Admin::where('email', Auth::guard('admin')->user()->email)
                 ->update([
                     'name' => $data['admin_name'],
                     'mobile' => $data['admin_mobile'],
+                    'image' => $imageName,
                 ]);
             $request->session()->flash("success_message", "Admin Details updated successfully.");
             return redirect()->back();
