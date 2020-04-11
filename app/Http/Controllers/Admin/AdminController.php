@@ -7,13 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
-use MongoDB\Driver\Session;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
+        Session::put('page', 'dashboard');
         return view('admin.admin_dashboard');
     }
 
@@ -52,6 +53,7 @@ class AdminController extends Controller
 
     public function settings()
     {
+        Session::put('page', 'settings');
         $adminDetails = Admin::where("email", Auth::guard("admin")->user()->email)->first();
         return view('admin.admin_settings')->with(compact('adminDetails'));
     }
@@ -86,6 +88,7 @@ class AdminController extends Controller
 
     public function updateAdminDetails(Request $request)
     {
+        Session::put('page', 'update-admin-details');
         if ($request->isMethod('post')){
             $data = $request->all();
 //            dd($data);
