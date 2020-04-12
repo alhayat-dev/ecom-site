@@ -20,4 +20,29 @@ $(document).ready(function() {
             }
         });
     });
+
+
+    $( ".updateSectionStatus" ).click( function() {
+        var status = $( this ).text();
+        var section_id = $( this ).attr('section_id');
+
+        $.ajax({
+            url: "/admin/update-section-status",
+            type: "Post",
+            data: { status, section_id},
+            success: function (res) {
+                if (res.status == 0){
+                    $("#section-" + res.section_id).text("Inactive");
+                }else if( res.status == 1){
+                    $("#section-" + res.section_id).text("Active");
+
+                }
+            },
+            error: function () {
+                console.log("errors");
+            }
+        });
+
+    });
+
 });

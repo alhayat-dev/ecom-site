@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ url('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ url('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
     <!-- JQVMap -->
     <link rel="stylesheet" href="{{ url('plugins/jqvmap/jqvmap.min.css') }}">
     <!-- Theme style -->
@@ -83,5 +85,15 @@
 <script src="{{ url('js/admin_js/demo.js') }}"></script>
 <!-- Custoom Admin Layout  -->
 <script src="{{ url('js/admin_js/admin_script.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+<!-- page script -->
+<script>
+    $(function () {
+        $("#sections").DataTable();
+    });
+</script>
+
 </body>
 </html>
