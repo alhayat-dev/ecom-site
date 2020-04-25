@@ -71,7 +71,7 @@
                             @else
                                 <?php $active = ''; ?>
                             @endif
-                            <a href="{{ url('admin/update-admin-details') }}" class="nav-link">
+                            <a href="{{ url('admin/update-admin-details') }}" class="nav-link {{ $active }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Update Admin Details</p>
                             </a>
@@ -115,7 +115,7 @@
                                 @else
                                     <?php $active = ''; ?>
                                 @endif
-                                <a href="#" class="nav-link">
+                                <a href="{{ url('admin/categories') }}" class="nav-link {{ $active }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Categories</p>
                                 </a>
