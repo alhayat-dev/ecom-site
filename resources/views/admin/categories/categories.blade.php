@@ -45,7 +45,9 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Section</th>
+                                    <th>Parent Category</th>
+                                    <th>Category</th>
                                     <th>URL</th>
                                     <th>Status</th>
                                 </tr>
@@ -55,6 +57,10 @@
                                 @foreach($categories as $category)
                                     <tr>
                                         <td>{{ $category->id }}</td>
+                                        <td>{{ $category->section->name }}</td>
+                                        <td>
+                                            {{ !isset($category->parentcategory->category_name) ? 'Root' : $category->parentcategory->category_name }}
+                                        </td>
                                         <td>{{ $category->category_name }}</td>
                                         <td>{{ $category->url }}</td>
                                         <td>
