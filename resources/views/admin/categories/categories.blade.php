@@ -24,11 +24,22 @@
             <div class="row">
                 <div class="col-12">
 
+                    @if(Session::has("success_message"))
+                        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                            {{ Session::get("success_message") }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Categories</h3>
+                            <a href="{{ url('admin/add-edit-category/') }}" class="btn btn-success float-right">Add Category</a>
                         </div>
-                        <!-- /.card-header -->
+
+                    <!-- /.card-header -->
                         <div class="card-body">
                             <table id="categories" class="table table-bordered table-striped">
                                 <thead>

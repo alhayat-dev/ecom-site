@@ -91,8 +91,6 @@ class AdminController extends Controller
         Session::put('page', 'update-admin-details');
         if ($request->isMethod('post')){
             $data = $request->all();
-//            dd($data);
-
             // Validation logic
             $rules = [
                 'admin_name' => 'required|regex:/^[\pL\s\-]+$/u',
