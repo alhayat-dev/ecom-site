@@ -86,5 +86,41 @@ $(document).ready(function() {
         });
     });
 
+    // Simple jQuery Alert
+
+    /*
+    $('.confirmDelete').click(function () {
+        var name = $(this).attr('name');
+        if (confirm("Are you sure that you want to delete this " + name + " ? ")){
+            return true;
+        }
+        return false;
+    });
+    */
+
+    // Category Delete using sweet alert
+
+    $('.confirmDelete').click(function () {
+        var record = $(this).attr('record');
+        var recordId = $(this).attr('recordId');
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = "/admin/delete-" + record + "/" + recordId;
+            }
+        });
+    });
+
+
+
 
 });

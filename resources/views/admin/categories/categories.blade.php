@@ -50,6 +50,7 @@
                                     <th>Category</th>
                                     <th>URL</th>
                                     <th>Status</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -78,7 +79,18 @@
                                                    href="javascript:void(0)">
                                                     Inactive
                                                 </a>
-                                        @endif
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('admin/add-edit-category/'. $category->id) }}">Edit</a> |
+                                            <a class="confirmDelete"
+                                               record="category"
+                                               recordId ="{{ $category->id }}"
+                                               href="javascript:void(0)"
+                                               <?php /*href="{{ url('admin/delete-category/'. $category->id) }} ">*/ ?>>
+                                                Delete
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
 
