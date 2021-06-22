@@ -96,6 +96,15 @@
 <!-- DataTables -->
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+
+<script>
+    $(function (){
+        $('#sections').DataTable();
+        $('#categories').DataTable();
+        $('#products').DataTable();
+    });
+</script>
+
 <!--Sweet Alert Script-->
 <script src="{{ url("https://cdn.jsdelivr.net/npm/sweetalert2@9") }}"></script>
 

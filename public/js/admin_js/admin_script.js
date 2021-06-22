@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    // Check admin password is correct or not
-    console.log( "ready!" );
 
     $("#current_password").keyup(function () {
         var current_password = $("#current_password").val();
@@ -120,7 +118,29 @@ $(document).ready(function() {
         });
     });
 
+    // Make product active or inactive
 
+    $( ".updateProductStatus" ).click( function() {
+        var status = $( this ).text();
+        var product_id = $( this ).attr('product_id');
+
+        $.ajax({
+            url: "/admin/update-product-status",
+            type: "post",
+            data: { status: status, product_id: product_id},
+            success: function (res) {
+                if (res.status == 0){
+                    $("#product-" + res.product_id).text("Inactive");
+                }else if( res.status == 1){
+                    $("#product-" + res.product_id).text("Active");
+                }
+            },
+            error: function () {
+                console.log("errors");
+            }
+        });
+
+    });
 
 
 });

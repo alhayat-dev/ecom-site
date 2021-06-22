@@ -45,6 +45,15 @@ Route::prefix('/admin')->namespace('Admin')->group(function (){
         Route::get('delete-category-image/{id}', 'CategoryController@deleteCategoryImage');
         Route::get('delete-category/{id}', 'CategoryController@deleteCategory');
 
+        // Prodducts
+        Route::get('products', 'ProductController@products');
+        Route::post('update-product-status', 'ProductController@updateProductStatus');
+        Route::get('delete-product/{id}', 'ProductController@deleteProduct');
+        Route::match(['get', 'post'], 'add-edit-product/{id?}', 'ProductController@addEditProduct');
     });
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
